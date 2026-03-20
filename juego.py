@@ -41,3 +41,16 @@ class Game:
                 self.players.remove(player_name)
             if player_name in self.player_sockets:
                 del self.player_sockets[player_name]
+    def to_dict(self):
+        with self.lock:
+            return {
+                "game_id": self.game_id,
+                "players": self.players,
+                "state": self.state,
+                "letter": self.letter,
+                "start_time": self.start_time,
+                "time_limit": self.time_limit,
+                "board": self.board
+            }
+
+        
